@@ -3,6 +3,7 @@ import { registerRoute, Route } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
 
 const API_ENDPOINT = process.env.API_ENDPOINT;
+const cacheName = new URL(API_ENDPOINT).host;
 // Do precaching
 precacheAndRoute(self.__WB_MANIFEST);
 
@@ -18,7 +19,7 @@ function isCacheable(url) {
 const backendAPI = new Route(
   ({ url }) => isCacheable(url.href),
   new StaleWhileRevalidate({
-    cacheName: "backend-api",
+    cacheName,
   }),
 );
 
