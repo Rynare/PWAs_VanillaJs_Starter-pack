@@ -86,7 +86,7 @@ class App {
       const { target } = evt;
       const isLinkRouter = target.getAttribute("is") === "link-router";
       const isStartWithTag = (target.getAttribute("href")?.startWith("#")) === true;
-      const isAnchor = (target.target?.tagName === "A") === true;
+      const isAnchor = (target?.tagName === "A") === true;
 
       if (isAnchor && isStartWithTag && !isLinkRouter) {
         evt.preventDefault();
